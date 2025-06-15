@@ -7,7 +7,7 @@ export default function DashboardLayout() {
   return (
     <div>
       <nav className="bg-gray-800 text-white p-4">
-        <Link to="/dashboard" className="mr-4">
+        <Link to="/" className="mr-4">
           Dashboard
         </Link>
         <Link to="/posts" className="mr-4">
