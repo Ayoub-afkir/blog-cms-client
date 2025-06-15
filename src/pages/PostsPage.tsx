@@ -21,7 +21,7 @@ export default function PostsPage() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    getPosts().then((res) => setPosts(res.data));
+    getPosts().then((res) => setPosts(res.data.data));
   }, []);
 
   const handleDelete = async (id: number) => {
@@ -52,7 +52,7 @@ export default function PostsPage() {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(posts) &&
+          {posts.length > 0 &&
             posts.map((post) => (
               <tr key={post.id} className="text-center border-t">
                 <td className="p-2 border">{post.title}</td>

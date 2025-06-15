@@ -6,6 +6,7 @@ import {
 
 import DashboardLayout from './pages/DashboardLayout';
 import LoginPage from './pages/LoginPage';
+import PostFormPage from './pages/PostFormPage';
 import PostsPage from './pages/PostsPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 
@@ -25,6 +26,8 @@ function App() {
         >
           <Route index element={<div>Welcome to Dashboard</div>} />
           <Route path="posts" element={<PostsPage />} />
+          <Route path="posts/create" element={<PostFormPage />} />
+          <Route path="posts/:id/edit" element={<PostFormPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
