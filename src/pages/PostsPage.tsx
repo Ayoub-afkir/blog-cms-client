@@ -21,13 +21,13 @@ export default function PostsPage() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    getPosts().then(res => setPosts(res.data));
+    getPosts().then((res) => setPosts(res.data));
   }, []);
 
   const handleDelete = async (id: number) => {
-    if (confirm('Are you sure?')) {
+    if (confirm("Are you sure?")) {
       await deletePost(id);
-      setPosts(posts.filter(post => post.id !== id));
+      setPosts(posts.filter((post) => post.id !== id));
     }
   };
 
@@ -35,7 +35,12 @@ export default function PostsPage() {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold">Posts</h1>
-        <Link to="/posts/create" className="bg-blue-600 text-white px-4 py-2 rounded">New Post</Link>
+        <Link
+          to="/posts/create"
+          className="bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          New Post
+        </Link>
       </div>
       <table className="w-full table-auto border">
         <thead>
@@ -47,17 +52,28 @@ export default function PostsPage() {
           </tr>
         </thead>
         <tbody>
-          {posts.map(post => (
-            <tr key={post.id} className="text-center border-t">
-              <td className="p-2 border">{post.title}</td>
-              <td className="p-2 border">{post.status}</td>
-              <td className="p-2 border">{post.category?.name || '-'}</td>
-              <td className="p-2 border">
-                <Link to={`/posts/${post.id}/edit`} className="text-blue-600 mr-2">Edit</Link>
-                <button onClick={() => handleDelete(post.id)} className="text-red-600">Delete</button>
-              </td>
-            </tr>
-          ))}
+          {Array.isArray(posts) &&
+            posts.map((post) => (
+              <tr key={post.id} className="text-center border-t">
+                <td className="p-2 border">{post.title}</td>
+                <td className="p-2 border">{post.status}</td>
+                <td className="p-2 border">{post.category?.name || "-"}</td>
+                <td className="p-2 border">
+                  <Link
+                    to={`/posts/${post.id}/edit`}
+                    className="text-blue-600 mr-2"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(post.id)}
+                    className="text-red-600"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
