@@ -15,6 +15,9 @@ interface User {
 export default function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
+
+  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   useEffect(() => {
     api

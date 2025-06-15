@@ -1,6 +1,12 @@
 import api from './axios';
 
 export const login = async (email: string, password: string) => {
-  await api.get("/sanctum/csrf-cookie");
-  return api.post("/login", { email, password });
+  const response = await api.post("login", {
+    email,
+    password,
+  });
+
+  localStorage.setItem("token", response.data.access_token);
+
+  return response;
 };
